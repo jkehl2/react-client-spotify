@@ -3,6 +3,7 @@ import {
   updateTrackSearch,
 } from 'src/store/actions';
 import axios from 'axios';
+import queryString from 'query-string';
 
 const authMiddleware = (store) => (next) => (action) => {
   if (action.type === SEARCH_TRACK) {
@@ -10,9 +11,19 @@ const authMiddleware = (store) => (next) => (action) => {
       token,
       apiURL,
     } = store.getState();
+    const url = queryString.stringifyUrl({
+      url: apiURL,
+      query: {
+        q: action.search,
+        type: action.typeSearch,
+        market: action.marketSearch,
+        limit: action.limitSearch,
+        offset: action.offsetSearch,
+      },
+    });
     const config = {
       method: 'get',
-      url: `${apiURL}q=${action.search}&type=track&market=FR&limit=10&offset=0`,
+      url,
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -38,7 +49,6 @@ const authMiddleware = (store) => (next) => (action) => {
             name: track.name,
             artists,
             preview_url: track.preview_url ? track.preview_url : '',
-            playing: false,
           };
         });
         next(updateTrackSearch(results));

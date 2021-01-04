@@ -13,6 +13,10 @@ export const UPDATE_TRACKSEARCH = 'UPDATE_TRACKSEARCH';
 export const searchTrack = (search) => ({
   type: SEARCH_TRACK,
   search,
+  typeSearch: 'track',
+  marketSearch: 'FR',
+  limitSearch: 10,
+  offsetSearch: 0,
 });
 
 /**
