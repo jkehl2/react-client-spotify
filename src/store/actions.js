@@ -5,7 +5,6 @@ export const SEARCH_TRACK = 'SEARCH_TRACK';
 export const UPDATE_TOKEN = 'UPDATE_TOKEN';
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const UPDATE_TRACKSEARCH = 'UPDATE_TRACKSEARCH';
-export const UPDATE_CURRENTPAGE = 'UPDATE_CURRENTPAGE';
 
 /**
  * @function searchTrack Action interrogation de l'api pour les pistes audio

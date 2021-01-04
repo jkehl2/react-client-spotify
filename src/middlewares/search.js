@@ -8,7 +8,6 @@ import {
   updateTrackSearch,
 } from 'src/store/actions';
 
-
 // Middleware pour intercepter l'action SEARCH_TRACK
 // et dialoguer avec l'API SEARCH de SPOTIFY
 const searchMiddleware = (store) => (next) => (action) => {
@@ -50,7 +49,8 @@ const searchMiddleware = (store) => (next) => (action) => {
           track.artists.forEach((artist) => {
             if (artists.length !== 0) {
               artists = `${artists}, ${artist.name}`;
-            } else {
+            }
+            else {
               artists = `${artist.name}`;
             }
           });
@@ -71,7 +71,8 @@ const searchMiddleware = (store) => (next) => (action) => {
         // en cas d'(erreur on affiche une log error)
         console.log(error);
       });
-  } else {
+  }
+  else {
     // Si l'action n'est pas SEARCH_TRACK on continu l'exécution vers le reducer.
     next(action);
   }
