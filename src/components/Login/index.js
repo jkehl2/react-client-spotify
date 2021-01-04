@@ -13,8 +13,8 @@ const Login = ({
     icon="lock open"
     placeholder="Access token"
     value={accessToken}
-    onChange={() => {
-      setAccessToken(accessToken);
+    onChange={(event) => {
+      setAccessToken(event.target.value);
     }}
   />
 );

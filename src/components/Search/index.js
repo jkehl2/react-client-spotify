@@ -13,6 +13,7 @@ const SearchBar = ({
     <Image centered size="medium" src={logoSpotify} />
     <Form
       className="search__form"
+      // TODO onSubmit faire la recherche
     >
       {/* Champ controlé classique, mais avec un <Input> de semantic ui */}
       <Input
@@ -21,7 +22,7 @@ const SearchBar = ({
         placeholder={placeholder}
         value={searchValue}
         onChange={(event) => {
-          setSearchValue(event.value);
+          setSearchValue(event.target.value);
         }}
       />
     </Form>
