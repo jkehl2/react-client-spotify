@@ -6,7 +6,7 @@ const initialState = {
   token: '',
   search: '',
   trackSearch: [],
-  apiURL: '',
+  apiURL: 'https://api.spotify.com/v1/search?',
 };
 
 function reducer(oldState = initialState, action) {

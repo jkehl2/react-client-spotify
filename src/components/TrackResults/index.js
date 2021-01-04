@@ -9,10 +9,9 @@ const TrackResults = ({ results }) => (
     {results.map((track) => (
       <Card
         key={track.id}
-        // cette ligne est un peu moche...
-        image={track.album.images && track.album.images.length > 0 && track.album.images[0].url}
+        image={track.imageUrl}
         header={track.name}
-        meta={track.artist}
+        meta={track.artists}
         extra={<AudioPlayer url={track.preview_url} />}
       />
     ))}
@@ -20,8 +19,16 @@ const TrackResults = ({ results }) => (
 );
 
 TrackResults.propTypes = {
-  // TODO préciser structure éléments du tableau
-  results: PropTypes.array.isRequired,
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      artists: PropTypes.string.isRequired,
+      preview_url: PropTypes.string.isRequired,
+      playing: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default TrackResults;

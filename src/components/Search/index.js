@@ -7,13 +7,13 @@ import logoSpotify from 'src/assets/logo_spotify.png';
 import './search.scss';
 
 const SearchBar = ({
-  searchValue, setSearchValue, placeholder,
+  searchValue, setSearchValue, placeholder, handleSubmit,
 }) => (
   <>
     <Image centered size="medium" src={logoSpotify} />
     <Form
       className="search__form"
-      // TODO onSubmit faire la recherche
+      onSubmit={handleSubmit(searchValue)}
     >
       {/* Champ controlé classique, mais avec un <Input> de semantic ui */}
       <Input
@@ -33,6 +33,7 @@ SearchBar.propTypes = {
   searchValue: PropTypes.string.isRequired,
   setSearchValue: PropTypes.func.isRequired,
   placeholder: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

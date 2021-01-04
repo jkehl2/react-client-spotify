@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import Search from 'src/components/Search';
 
-import { updateSearch } from 'src/store/actions';
+import { updateSearch, searchTrack } from 'src/store/actions';
 
 const mapStateToProps = (state) => ({
   searchValue: state.search,
@@ -11,6 +11,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setSearchValue: (search) => {
     dispatch(updateSearch(search));
+  },
+  handleSubmit: (search) => (event) => {
+    event.preventDefault();
+    dispatch(searchTrack(search));
   },
 });
 
