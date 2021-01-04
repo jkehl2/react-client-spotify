@@ -6,7 +6,7 @@ import AudioPlayer from 'src/components/AudioPlayer';
 
 const TrackResults = ({ results }) => (
   <Card.Group centered itemsPerRow={4}>
-    {results.items.map((track) => (
+    {results.tracks.items.map((track) => (
       <Card
         key={track.id}
         // cette ligne est un peu moche...
@@ -20,8 +20,8 @@ const TrackResults = ({ results }) => (
 );
 
 TrackResults.propTypes = {
-  // l'objet est un peu gros... ca serait bien de valider juste ce dont on se sert
-  results: PropTypes.object.isRequired,
+  // TODO préciser structure éléments du tableau
+  results: PropTypes.array.isRequired,
 };
 
 export default TrackResults;
