@@ -6,7 +6,7 @@ import AudioPlayer from 'src/components/AudioPlayer';
 
 const TrackResults = ({ results }) => (
   <Card.Group centered itemsPerRow={4}>
-    {results.tracks.items.map((track) => (
+    {results.map((track) => (
       <Card
         key={track.id}
         // cette ligne est un peu moche...
