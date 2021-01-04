@@ -50,8 +50,7 @@ const searchMiddleware = (store) => (next) => (action) => {
           track.artists.forEach((artist) => {
             if (artists.length !== 0) {
               artists = `${artists}, ${artist.name}`;
-            }
-            else {
+            } else {
               artists = `${artist.name}`;
             }
           });
@@ -65,14 +64,14 @@ const searchMiddleware = (store) => (next) => (action) => {
           };
         });
         // On créé une nouvelle action pour mettre à jour le tableau de résultat.
-        next(updateTrackSearch(results));
+        const newTotalPages = Math.ceil(response.data.tracks.total / action.limitSearch);
+        next(updateTrackSearch(results, action.currentPage, newTotalPages));
       })
       .catch((error) => {
         // en cas d'(erreur on affiche une log error)
         console.log(error);
       });
-  }
-  else {
+  } else {
     // Si l'action n'est pas SEARCH_TRACK on continu l'exécution vers le reducer.
     next(action);
   }

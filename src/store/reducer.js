@@ -1,12 +1,17 @@
 import {
-  UPDATE_TOKEN, UPDATE_SEARCH, UPDATE_TRACKSEARCH,
+  UPDATE_TOKEN, UPDATE_SEARCH, UPDATE_TRACKSEARCH, UPDATE_CURRENTPAGE,
 } from './actions';
 
 const initialState = {
   token: '',
-  search: '',
-  trackSearch: [],
   apiURL: 'https://api.spotify.com/v1/search',
+  search: {
+    filter: '',
+    limitSearch: 10,
+    totalPages: 0,
+    currentPage: 1,
+  },
+  trackSearch: [],
 };
 
 function reducer(oldState = initialState, action) {
@@ -19,12 +24,20 @@ function reducer(oldState = initialState, action) {
     case UPDATE_SEARCH:
       return {
         ...oldState,
-        search: action.search,
+        search: {
+          ...oldState.search,
+          filter: action.search,
+        },
       };
     case UPDATE_TRACKSEARCH:
       return {
         ...oldState,
         trackSearch: action.trackSearch,
+        search: {
+          ...oldState.search,
+          currentPage: action.currentPage,
+          totalPages: action.totalPages,
+        },
       };
     default:
       return { ...oldState };

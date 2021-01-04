@@ -26,7 +26,6 @@ TrackResults.propTypes = {
       name: PropTypes.string.isRequired,
       artists: PropTypes.string.isRequired,
       preview_url: PropTypes.string.isRequired,
-      playing: PropTypes.bool.isRequired,
     }),
   ).isRequired,
 };

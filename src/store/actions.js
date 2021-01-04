@@ -5,18 +5,20 @@ export const SEARCH_TRACK = 'SEARCH_TRACK';
 export const UPDATE_TOKEN = 'UPDATE_TOKEN';
 export const UPDATE_SEARCH = 'UPDATE_SEARCH';
 export const UPDATE_TRACKSEARCH = 'UPDATE_TRACKSEARCH';
+export const UPDATE_CURRENTPAGE = 'UPDATE_CURRENTPAGE';
 
 /**
  * @function searchTrack Action interrogation de l'api pour les pistes audio
  * @param {String} search Filtre de recherche
  */
-export const searchTrack = (search) => ({
+export const searchTrack = (search, currentPage, limitSearch) => ({
   type: SEARCH_TRACK,
   search,
   typeSearch: 'track',
   marketSearch: 'FR',
-  limitSearch: 10,
-  offsetSearch: 0,
+  limitSearch: limitSearch,
+  currentPage,
+  offsetSearch: limitSearch * (currentPage - 1),
 });
 
 /**
@@ -41,7 +43,9 @@ export const updateSearch = (search) => ({
  * @function updateTrackSearch Action mise à jour du résultat de recherche
  * @param {Array} trackSearch Tableau de résultats de recherche
  */
-export const updateTrackSearch = (trackSearch) => ({
+export const updateTrackSearch = (trackSearch, currentPage, totalPages) => ({
   type: UPDATE_TRACKSEARCH,
   trackSearch,
+  currentPage,
+  totalPages,
 });
